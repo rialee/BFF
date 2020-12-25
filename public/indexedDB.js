@@ -1,9 +1,8 @@
 // indexedDB setup
-
 let db;
 
 // open budget .open and create "budget", version 1
-const request = indexDB.open("budget", 1)
+const request = indexedDB.open("budget", 1)
 
 // first load db .onupgradeneeded, pass variable with deconstruction
 request.onupgradeneeded = function ({ target }) {
