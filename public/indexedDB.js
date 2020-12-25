@@ -2,7 +2,7 @@
 let db;
 
 // define indexedDB
-const indexedDB = window.indsexedDB;
+// const indexedDB = window.indsexedDB;
 
 // open budget .open and create "budget", version 1
 const request = indexedDB.open("budget", 1);
