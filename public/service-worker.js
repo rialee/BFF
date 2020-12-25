@@ -16,13 +16,25 @@ const FILES_TO_CACHE = [
 
 // install
 self.addEventListener("install", (evt) => {
+
+    // cache data
+    evt.waitUntil(
+        caches
+            .open(DATA_CACHE_NAME)
+            .then((cache) => cache.add("/api/transaction"))
+            // start immediately 
+            .then(self.skipWaiting())
+    );
+
+    // cache statis files
     evt.waitUntil(
         caches
             .open(CACHE_NAME)
             .then((cache) => cache.addAll(FILES_TO_CACHE))
-            // start immediately 
-            .then(self.skipWaiting())
     );
+
+    // start immediately 
+    self.skipWaiting
 });
 
 // activate
