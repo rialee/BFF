@@ -1,6 +1,9 @@
 // indexedDB setup
 let db;
 
+// define indexedDB
+const indexedDB = window.indsexedDB;
+
 // open budget .open and create "budget", version 1
 const request = indexedDB.open("budget", 1)
 
@@ -50,7 +53,7 @@ function saveRecord(record) {
     const store = transaction.onjectStore("pending");
 
     // add record (passed in data) to store 
-    store.add(record)
+    store.add(record);
 
 };
 
@@ -60,7 +63,7 @@ function onlineOperation() {
     console.log("online");
 
     // get reference to db and store 
-    const transaction = db.transaction(["pending"], "readwrite")
+    const transaction = db.transaction(["pending"], "readwrite");
     const store = transaction.objectStore("pending");
     const fetchPending = store.getAll();
 
@@ -69,6 +72,8 @@ function onlineOperation() {
 
         // if there are pending records (bulk)
         if (fetchPending.result.length > 0) {
+
+            // post the pending records
             fetch("/api/transction/bulk", {
                 method: "POST",
                 body: JSON.stringify(fetchPending.result),
@@ -78,21 +83,21 @@ function onlineOperation() {
                 }
             })
 
-                .then(response => {
-                    // format response to object
-                    return response.json();
-                })
+            // format response to object
+            .then(response => {
+                return response.json();
+            })
 
-                // clear pending
-                .then(() => {
+            // clear pending
+            .then(() => {
 
-                    // get reference
-                    const transaction = db.transaction(["pending"], "readwrite");
-                    const store = transaction.objectStore("pending");
-
-                    // clear table
-                    store.clear();
-                });
+                // get reference
+                const transaction = db.transaction(["pending"], "readwrite");
+                const store = transaction.objectStore("pending");
+                    
+                // clear table
+                store.clear();
+            });
         }
     };
 }
