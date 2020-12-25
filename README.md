@@ -19,6 +19,7 @@ This is a fully interactive application where users can submit expense and depo
 https://github.com/rialee/bff
 
 ### Project Deployed Link:
+https://bff-app.herokuapp.com/
 
 
 
