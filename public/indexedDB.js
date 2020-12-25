@@ -49,7 +49,7 @@ function saveRecord(record) {
 // function read database
 function onlineOperation() {
 
-    console.log("online")
+    console.log("online");
 
     // get reference to db and store 
 
@@ -61,4 +61,4 @@ function onlineOperation() {
 
 };
 // listen for app online/offline
-window.addEventListener("online", onlineOperation)
+window.addEventListener("online", onlineOperation);
