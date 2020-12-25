@@ -42,7 +42,15 @@ function saveRecord(record) {
 
     console.log("storing record");
 
-    // store records in pending until online
+    // getting references
+    // create a transaction
+    const transaction = db.transaction = db.transaction(["pending"], "readwrite");
+
+    // access to pending object store
+    const store = transaction.onjectStore("pending");
+
+    // add record (passed in data) to store 
+    store.add(record)
 
 };
 
