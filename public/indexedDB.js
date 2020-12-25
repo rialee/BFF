@@ -2,7 +2,7 @@
 let db;
 
 // define indexedDB
-// const indexedDB = window.indsexedDB;
+const indexedDB = window.indexedDB;
 
 // open budget .open and create "budget", version 1
 const request = indexedDB.open("budget", 1);
@@ -47,7 +47,7 @@ function saveRecord(record) {
 
     // getting references
     // create a transaction
-    const transaction = db.transaction = db.transaction(["pending"], "readwrite");
+    const transaction = db.transaction(["pending"], "readwrite");
 
     // access to pending object store
     const store = transaction.onjectStore("pending");
@@ -65,13 +65,13 @@ function onlineOperation() {
     // get reference to db and store 
     const transaction = db.transaction(["pending"], "readwrite");
     const store = transaction.objectStore("pending");
-    const fetchPending = store.getAll();
+    const getAll = store.getAll();
 
     // insert everything in bulk to db 
-    fetchPending.oncussess = function () {
+    getAll.oncussess = function () {
 
         // if there are pending records (bulk)
-        if (fetchPending.result.length > 0) {
+        if (getAll.result.length > 0) {
 
             // post the pending records
             fetch("/api/transction/bulk", {
